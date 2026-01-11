@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La famille du Wicquet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>La famille du Wicquet</h1>
+    <p>Histoire, titres et membres de la famille</p>
+</header>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="vicomte.html">Le titre de vicomte</a>
+    <a href="membres.html">Tous les membres</a>
+    <a href="chronologie.html">Chronologie</a>
+</nav>
+
+<main>
+    <section class="intro">
+        <h2>Bienvenue</h2>
+        <p>
+            Ce site présente l’histoire et les membres de la famille
+            <strong>du Wicquet</strong>, de manière claire et accessible,
+            sans le jargon inutile.
+        </p>
+    </section>
+
+    <section class="recherche">
+        <h2>Rechercher un membre</h2>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Exemple : Hugues du Wicquet"
+            autocomplete="off"
+        >
+
+        <ul id="results"></ul>
+    </section>
+</main>
+
+<footer>
+    <p>© Famille du Wicquet — Site indépendant</p>
+</footer>
+
+<script>
+const membres = [
+    { nom: "Hugues du Wicquet", page: "hugues-du-wicquet.html" },
+    { nom: "Jean du Wicquet", page: "jean-du-wicquet.html" },
+    { nom: "Pierre du Wicquet", page: "pierre-du-wicquet.html" }
+];
+
+const input = document.getElementById("searchInput");
+const results = document.getElementById("results");
+
+input.addEventListener("input", () => {
+    const valeur = input.value.toLowerCase();
+    results.innerHTML = "";
+
+    if (valeur.length < 2) return;
+
+    membres.forEach(membre => {
+        if (membre.nom.toLowerCase().includes(valeur)) {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${membre.page}">${membre.nom}</a>`;
+            results.appendChild(li);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
